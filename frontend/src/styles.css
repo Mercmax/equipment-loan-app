@@ -1,0 +1,28 @@
+.form-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+}
+.form-field {
+  margin-bottom: 20px;
+}
+.form-field label {
+  display: block;
+  margin-bottom: 5px;
+}
+.form-field input,
+.form-field button {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box; /* Include padding in the element's total width and height */
+}
+.form-field button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.form-field button:hover {
+  background-color: #0056b3;
+}

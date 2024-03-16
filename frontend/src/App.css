@@ -24,6 +24,15 @@
   color: white;
 }
 
+.app-body {
+  margin: 2rem;
+}
+.app-footer {
+  text-align: center;
+  padding: 2rem;
+  font-size: calc(10px + 1vmin);
+}
+
 .App-link {
   color: #61dafb;
 }

@@ -3,13 +3,17 @@ const API_BASE_URL = 'http://localhost:3000/api'; // Replace with your actual ba
 // Function to get all equipment
 export const getAllEquipment = async () => {
   try {
-    const response = await axios.get(${API_BASE_URL}/equipment`);
-    return response.data; // This will be the list of equipment} catch (error) {
+    const response = await axios.get(`${API_BASE_URL}/equipment`);
+    return response.data; // This will be the list of equipment
+  } catch (error) {
     console.error('Failed to fetch equipment:', error);
-    throw error; // Rethrow the error so it can be handled by the caller}};// Function to create a new equipment item
+    throw error; // Rethrow the error so it can be handled by the caller
+  }
+};
+// Function to create a new equipment item
 export const createEquipment = async (equipmentData) => {
      try {
-       const response = await axios.post(${API_BASE_URL}/equipment, equipmentData);
+       const response = await axios.post(`${API_BASE_URL}/equipment`, equipmentData);
        return response.data; // This will be the newly created equipment
      } catch (error) {
        console.error('Failed to create equipment:', error);
@@ -27,9 +31,9 @@ export const getEquipmentById = async (id) => {
   }
 };
    // Function to update an existing equipment item
-   export const updateEquipment = async (id, equipmentData) => {
+export const updateEquipment = async (id, equipmentData) => {
      try {
-       const response = await axios.put(${API_BASE_URL}/equipment/${id}, equipmentData);
+       const response = await axios.put(`${API_BASE_URL}/equipment/${id}`, equipmentData);
        return response.data; // This will be the updated equipment
      } catch (error) {
        console.error('Failed to update equipment:', error);
@@ -37,9 +41,9 @@ export const getEquipmentById = async (id) => {
      }
    };
    // Function to delete an equipment item
-   export const deleteEquipment = async (id) => {
+export const deleteEquipment = async (id) => {
      try {
-       const response = await axios.delete(${API_BASE_URL}/equipment/${id});
+       const response = await axios.delete(`${API_BASE_URL}/equipment/${id}`);
        return response.data; // This should be some confirmation message
      } catch (error) {
        console.error('Failed to delete equipment:', error);

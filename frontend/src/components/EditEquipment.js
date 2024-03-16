@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { getEquipmentById, updateEquipment } from '../services/apiService';
 const EditEquipment = () => {
   const { id } = useParams(); // This gets the equipment ID from the URL
-  const history = useHistory(); // This is used to navigate back to the equipment list after the update
+  const navigate = useNavigate(); // This is used to navigate back to the equipment list after the update
   const [equipment, setEquipment] = useState({
     name: '',
     status: '',
@@ -26,18 +26,19 @@ const EditEquipment = () => {
     };
     fetchEquipmentDetails();
   }, [id]);
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+// eslint-disable-next-line no-unused-vars
+  const handleChange = (event) => {
+    const { name, value } = event.target;
     setEquipment((prevEquipment) => ({
       ...prevEquipment,
       [name]: value,
     }));
   };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     try {
       await updateEquipment(id, equipment);
-      history.push('/'); // Redirect to the equipment list
+      navigate('/'); // Redirect to the equipment list
     } catch (error) {
       setError(error);
     }
@@ -49,13 +50,8 @@ const EditEquipment = () => {
       <h1>Edit Equipment</h1>
       {/* Create form inputs for each equipment field /}
       <label>
-        Name:
-        <input
-          type="text"
-          name="name"
-          value={equipment.name}
-          onChange={handleChange}
-        />
+	Name:
+        <input type="text" value={equipment.name} onChange={handleChange} />
       </label>
       {/ Repeat for other fields like status, condition, and loanPeriod */}
       <button type="submit">Save Changes</button>

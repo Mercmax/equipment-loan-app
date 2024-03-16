@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getAllEquipment, deleteEquipment } from '../services/apiService';
+import './EquipmentList.css'; // Make sure this CSS file exists and is correctly imported
 const EquipmentList = () => {
   const [equipment, setEquipment] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -16,7 +18,12 @@ const EquipmentList = () => {
     };
     fetchEquipment();
   }, []);
-  const handleDelete = async (id) => {
+const navigate = useNavigate();
+  // Define handleEditClick function here
+  const handleEditClick = (id) => {
+    navigate(`/edit/${id}`);
+  };  
+const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this equipment?')) {
       try {
         await deleteEquipment(id);
@@ -35,7 +42,7 @@ const EquipmentList = () => {
         {equipment.map((item) => (
           <li key={item.id}>
             {item.name} - {item.status}
-            <button onClick={() => history.push(`/edit-equipment/${item.id}`)}>
+            <button onClick={() => handleEditClick(item.id)}>
   	      Edit
 	    </button>
             <button onClick={() => handleDelete(item.id)}>
